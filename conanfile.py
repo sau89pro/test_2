@@ -13,15 +13,7 @@ class TestConan(ConanFile):
     no_copy_source = True
 
     def source(self):
-        tools.replace_in_file("src/CMakeLists.txt", "project(Test)",
-                              '''project(Test)
-
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()''')
-        tools.replace_in_file("src/CMakeLists.txt", "add_executable(test test.cpp)",
-                              '''add_executable(test test.cpp)
-
-target_link_libraries(test ${CONAN_LIBS})''')
+        tools.replace_in_file("src/CMakeLists.txt", "set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/../install)", "")
 
     def build(self):
         cmake = CMake(self)
