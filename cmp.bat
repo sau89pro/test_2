@@ -10,4 +10,4 @@ if not exist install mkdir install
 cd build
 
 conan install ..
-conan build ..
+conan build -pf ../install ..

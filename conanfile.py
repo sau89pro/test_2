@@ -12,9 +12,6 @@ class TestConan(ConanFile):
     generators = "cmake"
     no_copy_source = True
 
-    def source(self):
-        tools.replace_in_file("src/CMakeLists.txt", "set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/../install)", "")
-
     def build(self):
         cmake = CMake(self)
         cmake.configure(source_folder="src")
